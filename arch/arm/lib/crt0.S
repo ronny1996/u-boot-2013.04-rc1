@@ -150,8 +150,8 @@ clbss_l:cmp	r0, r1			/* while not at end of BSS */
 	addlo	r0, r0, #4		/* move to next */
 	blo	clbss_l
 
-	bl coloured_LED_init
-	bl red_led_on
+	@ bl coloured_LED_init
+	@ bl red_led_on
 
 #if defined(CONFIG_NAND_SPL)
 

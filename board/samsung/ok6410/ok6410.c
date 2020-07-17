@@ -30,7 +30,7 @@
 
 #include <common.h>
 #include <netdev.h>
-#include <asm/arch/s3c6400.h>
+#include <asm/arch/s3c6410.h>
 
 DECLARE_GLOBAL_DATA_PTR;
 
@@ -94,13 +94,13 @@ int dram_init(void)
 #ifdef CONFIG_DISPLAY_BOARDINFO
 int checkboard(void)
 {
-	printf("Board:   SMDK6400\n");
+	printf("Board:   OK6410\n");
 	return 0;
 }
 #endif
 
 #ifdef CONFIG_ENABLE_MMU
-ulong virt_to_phy_smdk6400(ulong addr)
+ulong virt_to_phy_ok6410(ulong addr)
 {
 	if ((0xc0000000 <= addr) && (addr < 0xc8000000))
 		return addr - 0xc0000000 + 0x50000000;

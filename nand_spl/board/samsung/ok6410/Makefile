@@ -37,8 +37,8 @@ LDFLAGS := -T $(nandobj)u-boot.lds -Ttext $(CONFIG_SYS_TEXT_BASE) $(LDFLAGS) \
 AFLAGS	+= -DCONFIG_NAND_SPL
 CFLAGS	+= -DCONFIG_NAND_SPL -ffunction-sections
 
-SOBJS	= start.o cpu_init.o lowlevel_init.o
-COBJS	= nand_boot.o nand_ecc.o s3c64xx.o smdk6400_nand_spl.o nand_base.o
+SOBJS	= start.o cpu_init.o lowlevel_init.o crt0.o
+COBJS	= nand_boot.o nand_ecc.o s3c64xx.o ok6410_nand_spl.o nand_base.o
 
 SRCS	:= $(addprefix $(obj),$(SOBJS:.o=.S) $(COBJS:.o=.c))
 OBJS	:= $(addprefix $(obj),$(SOBJS) $(COBJS))
@@ -65,6 +65,10 @@ $(nandobj)u-boot.lds: $(LDSCRIPT)
 
 # create symbolic links for common files
 
+$(obj)crt0.S:
+	@rm -f $@
+	@ln -s $(TOPDIR)/arch/arm/lib/crt0.S $@
+	
 # from cpu directory
 $(obj)start.S:
 	@rm -f $@
@@ -78,7 +82,7 @@ $(obj)cpu_init.S:
 # from board directory
 $(obj)lowlevel_init.S:
 	@rm -f $@
-	@ln -s $(TOPDIR)/board/samsung/smdk6400/lowlevel_init.S $@
+	@ln -s $(TOPDIR)/board/samsung/ok6410/lowlevel_init.S $@
 
 # from nand_spl directory
 $(obj)nand_boot.c:
@@ -94,9 +98,9 @@ $(obj)s3c64xx.c:
 	@rm -f $@
 	@ln -s $(TOPDIR)/drivers/mtd/nand/s3c64xx.c $@
 
-$(obj)smdk6400_nand_spl.c:
+$(obj)ok6410_nand_spl.c:
 	@rm -f $@
-	@ln -s $(TOPDIR)/board/samsung/smdk6400/smdk6400_nand_spl.c $@
+	@ln -s $(TOPDIR)/board/samsung/ok6410/ok6410_nand_spl.c $@
 
 $(obj)nand_base.c:
 	@rm -f $@

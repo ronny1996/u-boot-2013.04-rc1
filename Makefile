@@ -789,18 +789,18 @@ ucname	= $(shell echo $(1) | sed -e 's/\(.*\)_config/\U\1/')
 #########################################################################
 ## ARM1176 Systems
 #########################################################################
-smdk6400_noUSB_config	\
-smdk6400_config	:	unconfig
-	@mkdir -p $(obj)include $(obj)board/samsung/smdk6400
-	@mkdir -p $(obj)nand_spl/board/samsung/smdk6400
+ok6410_noUSB_config	\
+ok6410_config	:	unconfig
+	@mkdir -p $(obj)include $(obj)board/samsung/ok6410
+	@mkdir -p $(obj)nand_spl/board/samsung/ok6410
 	@echo "#define CONFIG_NAND_U_BOOT" > $(obj)include/config.h
 	@echo "CONFIG_NAND_U_BOOT = y" >> $(obj)include/config.mk
-	@if [ -z "$(findstring smdk6400_noUSB_config,$@)" ]; then			\
-		echo "RAM_TEXT = 0x57e00000" >> $(obj)board/samsung/smdk6400/config.tmp;\
+	@if [ -z "$(findstring ok6410_noUSB_config,$@)" ]; then			\
+		echo "RAM_TEXT = 0x57e00000" >> $(obj)board/samsung/ok6410/config.tmp;\
 	else										\
-		echo "RAM_TEXT = 0xc7e00000" >> $(obj)board/samsung/smdk6400/config.tmp;\
+		echo "RAM_TEXT = 0xc7e00000" >> $(obj)board/samsung/ok6410/config.tmp;\
 	fi
-	@$(MKCONFIG) smdk6400 arm arm1176 smdk6400 samsung s3c64xx
+	@$(MKCONFIG) ok6410 arm arm1176 ok6410 samsung s3c64xx
 	@echo "CONFIG_NAND_U_BOOT = y" >> $(obj)include/config.mk
 
 #########################################################################

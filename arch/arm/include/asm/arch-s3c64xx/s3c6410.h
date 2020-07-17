@@ -1,7 +1,7 @@
 /*
  * (C) Copyright 2007
  * Byungjae Lee, Samsung Erectronics, bjlee@samsung.com.
- *      - only support for S3C6400
+ *      - only support for S3C6410
  *
  * (C) Copyright 2008
  * Guennadi Liakhovetki, DENX Software Engineering, <lg@denx.de>
@@ -23,13 +23,13 @@
  */
 
 /************************************************
- * NAME	    : s3c6400.h
+ * NAME	    : s3c6410.h
  *
- * Based on S3C6400 User's manual Rev 0.0
+ * Based on S3C6410 User's manual Rev 0.0
  ************************************************/
 
-#ifndef __S3C6400_H__
-#define __S3C6400_H__
+#ifndef __S3C6410_H__
+#define __S3C6410_H__
 
 #define S3C64XX_UART_CHANNELS	3
 #define S3C64XX_SPI_CHANNELS	2
@@ -817,9 +817,9 @@
 /*-----------------------------------------------------------------------
  * Physical Memory Map
  */
-#define DMC1_MEM_CFG	0x00010012	/* burst 4, 13-bit row, 10-bit col */
-#define DMC1_MEM_CFG2	0xB45
-#define DMC1_CHIP0_CFG	0x150F8		/* 0x5000_0000~0x57ff_ffff (128 MiB) */
+#define DMC1_MEM_CFG	0X0001001A	/* burst 4, 14-bit row, 10-bit col */
+#define DMC1_MEM_CFG2	0XB45
+#define DMC1_CHIP0_CFG	0X150F0		/* 0X5000_0000~0X5FFF_FFFF(256MB) */
 #define DMC_DDR_32_CFG	0x0 		/* 32bit, DDR */
 
 /* Memory Parameters */
@@ -892,4 +892,4 @@ static inline s3c64xx_uart *s3c64xx_get_base_uart(enum s3c64xx_uarts_nr nr)
 }
 #endif
 
-#endif /*__S3C6400_H__*/
+#endif /*__S3C6410_H__*/
