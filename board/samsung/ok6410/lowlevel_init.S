@@ -222,7 +222,8 @@ wait_for_async:
 	str	r1, [r0, #MPLL_CON_OFFSET]
 
 	/* FOUT of EPLL is 96MHz */
-	ldr	r1, =0x200203
+ @ldr	r1, =0x200203
+	ldr	r1, =0x80200103 @ldr	r1, =0x80200203
 	str	r1, [r0, #EPLL_CON0_OFFSET]
 	ldr	r1, =0x0
 	str	r1, [r0, #EPLL_CON1_OFFSET]
@@ -309,15 +310,17 @@ mmu_table:
 	.word 0x00000000
 	.endr
 
-	/* 128MB for SDRAM 0xC0000000 -> 0x50000000 */
+	/* 256MB for SDRAM 0xC0000000 -> 0x50000000 */
 	.set __base, 0x500
-	.rept 0xC80 - 0xC00
+	@.rept 0xC80 - 0xC00
+	.rept 0xD00 - 0xC00
 	FL_SECTION_ENTRY __base, 3, 0, 1, 1
 	.set __base, __base + 1
 	.endr
 
 	/* access is not allowed. */
-	.rept 0x1000 - 0xc80
+	@ .rept 0x1000 - 0xc80
+	.rept 0x1000 - 0xD00
 	.word 0x00000000
 	.endr
 #endif

@@ -43,7 +43,11 @@
 #include <asm/arch/s3c6410.h>
 #include <div64.h>
 
-static ulong timer_load_val;
+DECLARE_GLOBAL_DATA_PTR;
+#define timer_load_val 	(gd->arch.timer_rate_hz)
+#define lastdec		(gd->arch.lastinc)
+#define timestamp 	(gd->arch.timer_reset_value)
+// static ulong timer_load_val;
 
 #define PRESCALER	167
 
@@ -62,9 +66,9 @@ static inline ulong read_timer(void)
 
 /* Internal tick units */
 /* Last decremneter snapshot */
-static unsigned long lastdec;
+// static unsigned long lastdec;
 /* Monotonic incrementing timer */
-static unsigned long long timestamp;
+// static unsigned long long timestamp;
 
 int timer_init(void)
 {
@@ -138,7 +142,7 @@ ulong get_tbclk(void)
 ulong get_timer_masked(void)
 {
 	unsigned long long res = get_ticks();
-	do_div (res, (timer_load_val / (100 * CONFIG_SYS_HZ)));
+	// do_div (res, (timer_load_val / (100 * CONFIG_SYS_HZ)));
 	return res;
 }
 

@@ -584,8 +584,9 @@ void board_init_r(gd_t *id, ulong dest_addr)
 		print_size(flash_size, "\n");
 # endif /* CONFIG_SYS_FLASH_CHECKSUM */
 	} else {
-		puts(failed);
-		hang();
+		puts("0 Mib\n");
+		// puts(failed);
+		//hang();
 	}
 #endif
 

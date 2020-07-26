@@ -65,7 +65,7 @@
 /*
  * Architecture magic and machine type
  */
-#define CONFIG_MACH_TYPE		1270
+#define CONFIG_MACH_TYPE		1626
 
 #define CONFIG_DISPLAY_CPUINFO
 #define CONFIG_DISPLAY_BOARDINFO
@@ -139,7 +139,7 @@
 
 #define CONFIG_SYS_LOAD_ADDR		CONFIG_SYS_SDRAM_BASE	/* default load address	*/
 
-#define CONFIG_SYS_HZ			1000
+#define CONFIG_SYS_HZ			1562500
 
 /**********************************
  Support Clock Settings
@@ -187,7 +187,7 @@
 #define CONFIG_SYS_FLASH_ERASE_TOUT	(5 * CONFIG_SYS_HZ) /* Timeout for Flash Erase	*/
 #define CONFIG_SYS_FLASH_WRITE_TOUT	(5 * CONFIG_SYS_HZ) /* Timeout for Flash Write	*/
 
-#define CONFIG_ENV_SIZE		0x4000	/* Total Size of Environment Sector */
+#define CONFIG_ENV_SIZE		0X80000	/* Total Size of Environment Sector */
 
 /*
  * OK6410 board specific data
@@ -216,7 +216,7 @@
 /* NAND U-Boot load and start address */
 #define CONFIG_SYS_UBOOT_BASE		(CONFIG_SYS_MAPPED_RAM_BASE + 0x07e00000)
 
-#define CONFIG_ENV_OFFSET		0x0040000
+#define CONFIG_ENV_OFFSET		0x0080000
 
 /* NAND configuration */
 #define CONFIG_SYS_MAX_NAND_DEVICE	1
@@ -231,15 +231,15 @@
 #define CONFIG_SYS_NAND_U_BOOT_DST	CONFIG_SYS_PHY_UBOOT_BASE	/* NUB load-addr      */
 #define CONFIG_SYS_NAND_U_BOOT_START	CONFIG_SYS_NAND_U_BOOT_DST	/* NUB start-addr     */
 
-#define CONFIG_SYS_NAND_U_BOOT_OFFS	(4 * 1024)	/* Offset to RAM U-Boot image */
-#define CONFIG_SYS_NAND_U_BOOT_SIZE	(252 * 1024)	/* Size of RAM U-Boot image   */
+#define CONFIG_SYS_NAND_U_BOOT_OFFS	(16 * 1024)	/* Offset to RAM U-Boot image */
+#define CONFIG_SYS_NAND_U_BOOT_SIZE	(496 * 1024)	/* Size of RAM U-Boot image   */
 
 /* NAND chip page size		*/
-#define CONFIG_SYS_NAND_PAGE_SIZE	2048
+#define CONFIG_SYS_NAND_PAGE_SIZE	4096
 /* NAND chip block size		*/
-#define CONFIG_SYS_NAND_BLOCK_SIZE	(128 * 1024)
+#define CONFIG_SYS_NAND_BLOCK_SIZE	(128 * 4096)
 /* NAND chip page per block count  */
-#define CONFIG_SYS_NAND_PAGE_COUNT	64
+#define CONFIG_SYS_NAND_PAGE_COUNT	128
 /* Location of the bad-block label */
 #define CONFIG_SYS_NAND_BAD_BLOCK_POS	0
 /* Extra address cycle for > 128MiB */
@@ -257,6 +257,7 @@
 				 56, 57, 58, 59, 60, 61, 62, 63}
 
 /* Boot configuration (define only one of next 3) */
+#define CONFIG_BOOT_SD
 #define CONFIG_BOOT_NAND
 /* None of these are currently implemented. Left from the original Samsung
  * version for reference
