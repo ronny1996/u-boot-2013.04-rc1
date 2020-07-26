@@ -61,7 +61,15 @@ void	flush_dcache_all(void)
  */
 void __enable_caches(void)
 {
-	puts("WARNING: Caches not enabled\n");
+	icache_enable();
+	if(!icache_status()){
+		puts("WARING: iCache not enabled\n");
+	}
+	// dcache_enable();
+	if(!dcache_status()){
+		puts("WARING: dCache not enabled\n");
+	}
+	// puts("WARNING: Caches not enabled\n");
 }
 void enable_caches(void)
 	__attribute__((weak, alias("__enable_caches")));

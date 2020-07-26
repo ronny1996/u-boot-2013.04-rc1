@@ -101,6 +101,7 @@
  ***********************************************************/
 #include <config_cmd_default.h>
 
+#define CONFIG_CMD_HELLO
 #define CONFIG_CMD_CACHE
 #define CONFIG_CMD_REGINFO
 #define CONFIG_CMD_LOADS
@@ -272,9 +273,20 @@
 #define CONFIG_ONENAND
 #define CONFIG_MOVINAND
 */
+#define CONFIG_MMC		//select mmc device as block device
+#define CONFIG_GENERIC_MMC	//added mmc.c
+#define CONFIG_CMD_MMC		//added cmd_mmc.c
+#define CONFIG_SDHCI		//added sdhci.c
+#define CONFIG_MMC_SDMA	
+#define CONFIG_S3C6410_SDHCI	//added s3c6410_sdhci.c
 
 /* Settings as above boot configuration */
+// #define CONFIG_ENV_IS_IN_NAND
+#define CONFIG_ENV_IS_IN_MMC
+#define CONFIG_SYS_MMC_ENV_DEV	0
+#ifndef CONFIG_ENV_IS_IN_MMC
 #define CONFIG_ENV_IS_IN_NAND
+#endif
 #define CONFIG_BOOTARGS		"console=ttySAC,115200"
 
 #if !defined(CONFIG_ENABLE_MMU)

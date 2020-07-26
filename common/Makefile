@@ -65,6 +65,7 @@ COBJS-$(CONFIG_ENV_IS_IN_REMOTE) += env_remote.o
 COBJS-$(CONFIG_ENV_IS_NOWHERE) += env_nowhere.o
 
 # command
+COBJS-$(CONFIG_CMD_HELLO) += cmd_hello.o
 COBJS-$(CONFIG_CMD_AMBAPP) += cmd_ambapp.o
 COBJS-$(CONFIG_SOURCE) += cmd_source.o
 COBJS-$(CONFIG_CMD_SOURCE) += cmd_source.o
