@@ -611,7 +611,19 @@
 #define NFSECC_REG		__REG(ELFIN_NAND_BASE + NFSECC_OFFSET)
 #define NFMLCBITPT_REG		__REG(ELFIN_NAND_BASE + NFMLCBITPT_OFFSET)
 
+#define NF8ECCERR0		__REG(ELFIN_NAND_BASE + 0x44)
+#define NF8ECCERR1		__REG(ELFIN_NAND_BASE + 0x48)	
+#define NF8ECCERR2		__REG(ELFIN_NAND_BASE + 0x4c)
+#define NFM8ECC0		__REG(ELFIN_NAND_BASE + 0x50)
+#define NFM8ECC1		__REG(ELFIN_NAND_BASE + 0x54)
+#define NFM8ECC2		__REG(ELFIN_NAND_BASE + 0x58)
+#define NFM8ECC3		__REG(ELFIN_NAND_BASE + 0x5c)
+#define NFMLC8BITPT0		__REG(ELFIN_NAND_BASE + 0x60)
+#define NFMLC8BITPT1		__REG(ELFIN_NAND_BASE + 0x64)
+
+
 #define NFCONF_ECC_4BIT		(1<<24)
+#define NFCONF_ECC_8BIT		(1<<23)
 
 #define NFCONT_ECC_ENC		(1<<18)
 #define NFCONT_WP		(1<<16)
@@ -817,9 +829,9 @@
 /*-----------------------------------------------------------------------
  * Physical Memory Map
  */
-#define DMC1_MEM_CFG	0X0001001A	/* burst 4, 14-bit row, 10-bit col */
-#define DMC1_MEM_CFG2	0XB45
-#define DMC1_CHIP0_CFG	0X150F0		/* 0X5000_0000~0X5FFF_FFFF(256MB) */
+#define DMC1_MEM_CFG	0x0001001A	/* burst 4, 14-bit row, 10-bit col */
+#define DMC1_MEM_CFG2	0xB45
+#define DMC1_CHIP0_CFG	0x150F0		/* 0x5000_0000~0x5fff_ffff (256 MiB) */
 #define DMC_DDR_32_CFG	0x0 		/* 32bit, DDR */
 
 /* Memory Parameters */

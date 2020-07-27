@@ -232,6 +232,11 @@
 #define CONFIG_SYS_NAND_U_BOOT_DST	CONFIG_SYS_PHY_UBOOT_BASE	/* NUB load-addr      */
 #define CONFIG_SYS_NAND_U_BOOT_START	CONFIG_SYS_NAND_U_BOOT_DST	/* NUB start-addr     */
 
+#define CONFIG_S3C6410_CUSTOM_NAND_TIMING
+#define CONFIG_S3C6410_TACLS		7	//hclk*tacls		0~7
+#define CONFIG_S3C6410_TWRPH0		7	//hclk*(twrph0+1)	0~7
+#define CONFIG_S3C6410_TWRPH1		7	//hclk*(twrph1+1)	0~7
+
 #define CONFIG_SYS_NAND_U_BOOT_OFFS	(16 * 1024)	/* Offset to RAM U-Boot image */
 #define CONFIG_SYS_NAND_U_BOOT_SIZE	(496 * 1024)	/* Size of RAM U-Boot image   */
 
@@ -246,20 +251,34 @@
 /* Extra address cycle for > 128MiB */
 #define CONFIG_SYS_NAND_5_ADDR_CYCLE
 
+#define CONFIG_NAND_BL1_8BIT_ECC
 /* Size of the block protected by one OOB (Spare Area in Samsung terminology) */
-#define CONFIG_SYS_NAND_ECCSIZE	CONFIG_SYS_NAND_PAGE_SIZE
+#define CONFIG_SYS_NAND_ECCSIZE	 512 //CONFIG_SYS_NAND_PAGE_SIZE
 /* Number of ECC bytes per OOB - S3C6410 calculates 4 bytes ECC in 1-bit mode */
-#define CONFIG_SYS_NAND_ECCBYTES	4
+#define CONFIG_SYS_NAND_ECCBYTES	13 //4
 /* Size of a single OOB region */
-#define CONFIG_SYS_NAND_OOBSIZE	64
+#define CONFIG_SYS_NAND_OOBSIZE 218 //64
 /* ECC byte positions */
+#if 0
 #define CONFIG_SYS_NAND_ECCPOS		{40, 41, 42, 43, 44, 45, 46, 47, \
 				 48, 49, 50, 51, 52, 53, 54, 55, \
 				 56, 57, 58, 59, 60, 61, 62, 63}
+#endif
+#define CONFIG_SYS_NAND_ECCPOS		{114,115,116,117,118,119,120,121,122,123,\
+		   			124,125,126,127,128,129,130,131,132,133,\
+		   			134,135,136,137,138,139,140,141,142,143,\
+		   			144,145,146,147,148,149,150,151,152,153,\
+		   			154,155,156,157,158,159,160,161,162,163,\
+		   			164,165,166,167,168,169,170,171,172,173,\
+		   			174,175,176,177,178,179,180,181,182,183,\
+		   			184,185,186,187,188,189,190,191,192,193,\
+		   			194,195,196,197,198,199,200,201,202,203,\
+		   			204,205,206,207,208,209,210,211,212,213,\
+		   			214,215,216,217}
 
 /* Boot configuration (define only one of next 3) */
 #define CONFIG_BOOT_SD
-#define CONFIG_BOOT_NAND
+// #define CONFIG_BOOT_NAND
 /* None of these are currently implemented. Left from the original Samsung
  * version for reference
 #define CONFIG_BOOT_NOR
