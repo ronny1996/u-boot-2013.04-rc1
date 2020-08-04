@@ -206,12 +206,12 @@
 
 #ifdef CONFIG_ENABLE_MMU
 #define CONFIG_SYS_MAPPED_RAM_BASE	0xc0000000
-#define CONFIG_BOOTCOMMAND	"nand read 0xc0018000 0x60000 0x1c0000;" \
-				"bootm 0xc0018000"
+// #define CONFIG_BOOTCOMMAND	"nand read 0xc0018000 0x100000 0x500000;" \
+// 				"bootm 0xc0018000"
 #else
 #define CONFIG_SYS_MAPPED_RAM_BASE	CONFIG_SYS_SDRAM_BASE
-#define CONFIG_BOOTCOMMAND	"nand read 0x50018000 0x60000 0x1c0000;" \
-				"bootm 0x50018000"
+// #define CONFIG_BOOTCOMMAND	"nand read 0x50018000 0x100000 0x500000;" \
+// 				"bootm 0x50018000"
 #endif
 
 /* NAND U-Boot load and start address */
@@ -264,6 +264,7 @@
 				 48, 49, 50, 51, 52, 53, 54, 55, \
 				 56, 57, 58, 59, 60, 61, 62, 63}
 #endif
+#if 1
 #define CONFIG_SYS_NAND_ECCPOS		{114,115,116,117,118,119,120,121,122,123,\
 		   			124,125,126,127,128,129,130,131,132,133,\
 		   			134,135,136,137,138,139,140,141,142,143,\
@@ -275,6 +276,21 @@
 		   			194,195,196,197,198,199,200,201,202,203,\
 		   			204,205,206,207,208,209,210,211,212,213,\
 		   			214,215,216,217}
+#else
+#define CONFIG_SYS_NAND_ECCPOS    {\
+				24,25,26,27,28,29,30,31,32,33,\
+				34,35,36,37,38,39,40,41,42,43,\
+				44,45,46,47,48,49,50,51,52,53,\
+				54,55,56,57,58,59,60,61,62,63,\
+				64,65,66,67,68,69,70,71,72,73,\
+				74,75,76,77,78,79,80,81,82,83,\
+				84,85,86,87,88,89,90,91,92,93,\
+				94,95,96,97,98,99,100,101,102,103,\
+				104, 105, 106, 107, 108, 109, 110, 111,\
+				112, 113, 114, 115, 116, 117, 118, 119,\
+				120, 121, 122, 123, 124, 125, 126, 127
+}
+#endif
 
 /* Boot configuration (define only one of next 3) */
 #define CONFIG_BOOT_SD
@@ -285,6 +301,14 @@
 #define CONFIG_BOOT_MOVINAND
 #define CONFIG_BOOT_ONENAND
 */
+#ifdef CONFIG_BOOT_SD
+#define CONFIG_BOOTCOMMAND	"fatload mmc 0 50008000 u-boot-nand.bin;"	\
+				"nand erase.chip;"				\
+				"nand write.uboot 50008000 0 0"
+#else
+#define CONFIG_BOOTCOMMAND	"fatload mmc 0 50008000 uImage;"		\
+				"bootm	50008000"
+#endif
 
 #define CONFIG_NAND
 #define CONFIG_NAND_S3C64XX
@@ -301,8 +325,10 @@
 
 /* Settings as above boot configuration */
 // #define CONFIG_ENV_IS_IN_NAND
+#ifdef CONFIG_BOOT_SD
 #define CONFIG_ENV_IS_IN_MMC
 #define CONFIG_SYS_MMC_ENV_DEV	0
+#endif
 #ifndef CONFIG_ENV_IS_IN_MMC
 #define CONFIG_ENV_IS_IN_NAND
 #endif
