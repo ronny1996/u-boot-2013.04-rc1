@@ -122,6 +122,9 @@ const uchar default_environment[] = {
 #if defined(CONFIG_PCI_BOOTDELAY) && (CONFIG_PCI_BOOTDELAY > 0)
 	"pcidelay="	__stringify(CONFIG_PCI_BOOTDELAY)"\0"
 #endif
+#ifdef CONFIG_CMD_NAND_YAFFS
+  "write_yaffs=" "fatload mmc 0 50008000 rootfs.yaffs2;nand erase 600000 c800000;nand write.yaffs 50008000 600000 d2a5000;\0"
+#endif
 #ifdef	CONFIG_ENV_VARS_UBOOT_CONFIG
 	"arch="		CONFIG_SYS_ARCH			"\0"
 	"cpu="		CONFIG_SYS_CPU			"\0"

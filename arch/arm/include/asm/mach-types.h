@@ -268,7 +268,7 @@ extern unsigned int __machine_arch_type;
 #define MACH_TYPE_TS409                1601
 #define MACH_TYPE_CM_X300              1616
 #define MACH_TYPE_AT91SAM9G20EK        1624
-#define MACH_TYPE_SMDK6410             1626
+#define MACH_TYPE_OK6410             1626
 #define MACH_TYPE_U300                 1627
 #define MACH_TYPE_WRT350N_V2           1633
 #define MACH_TYPE_OMAP_LDP             1639

@@ -32,6 +32,7 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
+#define CONFIG_SYS_NO_FLASH
 /*
  * High Level Configuration Options
  * (easy to change)
@@ -101,6 +102,7 @@
  ***********************************************************/
 #include <config_cmd_default.h>
 
+#define CONFIG_CMD_NAND_YAFFS
 #define CONFIG_CMD_HELLO
 #define CONFIG_CMD_CACHE
 #define CONFIG_CMD_REGINFO
@@ -114,11 +116,11 @@
 #define CONFIG_CMD_PING
 #define CONFIG_CMD_ELF
 #define CONFIG_CMD_FAT
-#define CONFIG_CMD_EXT2
+// #define CONFIG_CMD_EXT2
 
 #define CONFIG_BOOTDELAY	3
 
-#define CONFIG_ZERO_BOOTDELAY_CHECK
+// #define CONFIG_ZERO_BOOTDELAY_CHECK
 
 #if (CONFIG_COMMANDS & CONFIG_CMD_KGDB)
 #define CONFIG_KGDB_BAUDRATE	115200	/* speed to run kgdb serial port */
@@ -293,8 +295,8 @@
 #endif
 
 /* Boot configuration (define only one of next 3) */
-#define CONFIG_BOOT_SD
-// #define CONFIG_BOOT_NAND
+// #define CONFIG_BOOT_SD
+#define CONFIG_BOOT_NAND
 /* None of these are currently implemented. Left from the original Samsung
  * version for reference
 #define CONFIG_BOOT_NOR
@@ -308,6 +310,11 @@
 #else
 #define CONFIG_BOOTCOMMAND	"fatload mmc 0 50008000 uImage;"		\
 				"bootm	50008000"
+// #define CONFIG_BOOTCOMMAND	"fatload mmc 0 50008000 rootfs.yaffs2;"		\
+// 				"nand erase 600000 c800000;"			\
+// 				"nand write.yaffs 50008000 600000 d2a5000;"	\
+// 				"fatload mmc 0 50008000 uImage;"		\
+// 				"bootm	50008000"
 #endif
 
 #define CONFIG_NAND
@@ -332,7 +339,8 @@
 #ifndef CONFIG_ENV_IS_IN_MMC
 #define CONFIG_ENV_IS_IN_NAND
 #endif
-#define CONFIG_BOOTARGS		"console=ttySAC,115200"
+#define CONFIG_BOOTARGS		"noinitrd root=/dev/mtdblock2 rootfstype=yaffs2 init=/linuxrc console=ttySAC0,115200"
+
 
 #if !defined(CONFIG_ENABLE_MMU)
 #define CONFIG_CMD_USB			1

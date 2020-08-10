@@ -138,7 +138,12 @@ static struct nand_ecclayout nand_oob_218 = {
 			 },
 	.oobfree = {
 		{.offset = 2,
-		 .length = 22} }
+		#if 0
+		 .length = 22
+		#else
+		.length = 112
+		#endif
+		 } }
 };
 
 static int nand_get_device(struct nand_chip *chip, struct mtd_info *mtd,
