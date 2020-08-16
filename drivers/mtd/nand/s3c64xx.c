@@ -241,7 +241,7 @@ int s3c_nand_correct_data_8bit(struct mtd_info *mtd, u_char *dat, u_char *read_e
     u_long nf8eccerr0, nf8eccerr1, nf8eccerr2, nfmlc8bitpt0, nfmlc8bitpt1;
     u_char err_type;
 
-    //s3c_nand_wait_ecc_busy_8bit();
+    // s3c_nand_wait_ecc_busy_8bit();
 
     nf8eccerr0 = NF8ECCERR0;
     nf8eccerr1 = NF8ECCERR1;
